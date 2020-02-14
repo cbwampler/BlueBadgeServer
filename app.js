@@ -15,6 +15,6 @@ app.use(require('./middleware/validate-session'))
 app.use('/testcase', testcase)
 
 app.listen(3500, function(){
-    console.log('App is listening on Port 3500')
+    console.log('App is listening on Port 3500}')
 }
 )

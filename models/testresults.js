@@ -1,11 +1,10 @@
 module.exports = function(sequelize,DataTypes){
-    return sequelize.define('testcase',{
+    return sequelize.define('testresults',{
         
         area:DataTypes.STRING,
         category:DataTypes.STRING,
-        subcat:DataTypes.STRING,
-        owner:DataTypes.INTEGER,
-        status:DataTypes.STRING,
+        subcat1:DataTypes.STRING,
+        subcat2:DataTypes.STRING,
         details:DataTypes.TEXT,
         expectation:DataTypes.TEXT,
         notes:DataTypes.TEXT,
@@ -13,5 +12,6 @@ module.exports = function(sequelize,DataTypes){
         priority:DataTypes.STRING,
         platform:DataTypes.STRING,
         testtype:DataTypes.STRING,
+        results:DataTypes.STRING
     })
 }

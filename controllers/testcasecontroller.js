@@ -13,8 +13,7 @@ router.post('/create',function(req,res){
     var owner = req.user.id 
     var area = req.body.testcase.area
     var category = req.body.testcase.category
-    var subcat1 = req.body.testcase.subcat1
-    var subcat2 = req.body.testcase.subcat2
+    var subcat = req.body.testcase.subcat
     var status = req.body.testcase.status
     var details = req.body.testcase.details
     var expectation = req.body.testcase.expectation
@@ -27,8 +26,7 @@ router.post('/create',function(req,res){
     Testcase.create({
         area: area,
         category: category,
-        subcat1: subcat1,
-        subcat2: subcat2,
+        subcat: subcat,
         owner: owner,
         status: status,
         details: details,
@@ -49,6 +47,40 @@ router.post('/create',function(req,res){
         }
     );
 });
+
+/**********************
+ * get all testcases 
+***********************/
+
+router.get('/allcases', function(req,res){
+    Testcase.findAll({
+
+    }).then(
+        function findAllSuccess(data){
+            res.json(data)
+        }, function findAll(err){
+            res.send(500,err.message)
+        }
+    );
+});
+
+/**********************
+ * get testcase by id 
+***********************/
+
+router.get('/allcases/:id', function(req,res){
+    var primarykey = req.params.id;
+    Testcase.findAll({
+       where: {id:primarykey}
+    }).then(
+        function findAllSuccess(data){
+            res.json(data)
+        }, function findAll(err){
+            res.send(500,err.message)
+        }
+    );
+});
+
 
 /**********************
  * get all testcases for a user
@@ -73,11 +105,9 @@ router.get('/getall', function(req,res){
 
 router.get("/:id", function(req,res){
     var primarykey = req.params.id;
-    var userid = req.user.id
     Testcase.findOne(
         {
-            where: {id:primarykey, 
-            owner:userid}
+            where: {id:primarykey}
         }
     ).then(
         data => {return data ?res.json(data) : res.send("not authorized to view this record")
@@ -85,16 +115,14 @@ router.get("/:id", function(req,res){
 });
 
 /**********************
- * update an item for a user
+ * update an item 
 ***********************/
 
 router.put("/update/:id", function(req, res) {
     var primaryKey = req.params.id;
-    var userid = req.user.id 
     var area = req.body.testcase.area
     var category = req.body.testcase.category
-    var subcat1 = req.body.testcase.subcat1
-    var subcat2 = req.body.testcase.subcat2
+    var subcat = req.body.testcase.subcat
     var status = req.body.testcase.status
     var details = req.body.testcase.details
     var expectation = req.body.testcase.expectation
@@ -107,8 +135,7 @@ router.put("/update/:id", function(req, res) {
     Testcase.update({
         area: area,
         category: category,
-        subcat1: subcat1,
-        subcat2: subcat2,
+        subcat: subcat,
         status: status,
         details: details,
         expectation: expectation,
@@ -118,7 +145,7 @@ router.put("/update/:id", function(req, res) {
         platform: platform,
         testtype: testtype
     },
-    {where: {id: primaryKey, owner: userid}
+    {where: {id: primaryKey}
 }).then(
         data => {
             return res.json(data)
@@ -127,16 +154,15 @@ router.put("/update/:id", function(req, res) {
 });
 
 /**********************
- * delete an item for a user
+ * delete an item from the Database
 ***********************/
 
 router.delete('/delete/:id', function (req,res){
     var data = req.params.id;
-    var userid = req.user.id;
 
     Testcase
     .destroy({
-        where: {id: data, owner: userid}
+        where: {id: data}
     }).then(
         function deleteCaseSuccess(data){
             res.send("you removed a testcase item");
@@ -148,3 +174,7 @@ router.delete('/delete/:id', function (req,res){
 });
 
 module.exports = router;
+
+
+
+
