@@ -18,10 +18,31 @@ router.post('/create',function(req,res){
     var details = req.body.testcase.details
     var expectation = req.body.testcase.expectation
     var notes = req.body.testcase.notes
-    var medium = req.body.testcase.medium
-    var priority = req.body.testcase.priority
-    var platform = req.body.testcase.platform
-    var testtype = req.body.testcase.testtype
+    var deskphone = req.body.testcase.deskphone
+    var sharpenq = req.body.testcase.sharpenq
+    var connectphone = req.body.testcase.connectphone
+    var chrome = req.body.testcase.chrome
+    var firefox = req.body.testcase.firefox
+    var ctisn = req.body.testcase.ctisn
+    var ctizd = req.body.testcase.ctizd
+    var ctisfdc = req.body.testcase.ctisfdc
+    var android = req.body.testcase.android
+    var ios = req.body.testcase.ios
+    var connect = req.body.testcase.connect
+    var quick = req.body.testcase.quick
+    var full = req.body.testcase.full
+    var regression = req.body.testcase.regression
+    var automated = req.body.testcase.automated
+    var inboundcall = req.body.testcase.inboundcall
+    var chat = req.body.testcase.chat
+    var email = req.body.testcase.email
+    var tweet = req.body.testcase.tweet
+    var tweetdm = req.body.testcase.tweetdm
+    var facebook = req.body.testcase.facebook
+    var sms = req.body.testcase.sms
+    var casein = req.body.testcase.casein
+    var voicemail = req.body.testcase.voicemail
+    var insights = req.body.testcase.insights       
 
     Testcase.create({
         area: area,
@@ -32,10 +53,32 @@ router.post('/create',function(req,res){
         details: details,
         expectation: expectation,
         notes: notes,
-        medium: medium,
-        priority: priority,
-        platform: platform,
-        testtype: testtype
+        deskphone: deskphone,
+        sharpenq: sharpenq,
+        connectphone: connectphone,
+        chrome: chrome,
+        firefox: firefox,
+        ctisn: ctisn,
+        ctizd: ctizd,
+        ctisfdc: ctisfdc,
+        android: android,
+        ios: ios,
+        connect: connect,
+        quick: quick,
+        full: full,
+        regression: regression,
+        automated: automated,
+        inboundcall: inboundcall,
+        chat: chat,
+        email: email,
+        tweet: tweet,
+        tweetdm: tweetdm,
+        facebook: facebook,
+        sms: sms,
+        casein: casein,
+        voicemail: voicemail,
+        insights: insights
+        
     }).then(
         function createSuccess(testcase){
             res.json({
@@ -71,7 +114,7 @@ router.get('/allcases', function(req,res){
 router.get('/allcases/:id', function(req,res){
     var primarykey = req.params.id;
     Testcase.findAll({
-       where: {id:primarykey}
+    where: {id:primarykey}
     }).then(
         function findAllSuccess(data){
             res.json(data)
@@ -127,10 +170,31 @@ router.put("/update/:id", function(req, res) {
     var details = req.body.testcase.details
     var expectation = req.body.testcase.expectation
     var notes = req.body.testcase.notes
-    var medium = req.body.testcase.medium
-    var priority = req.body.testcase.priority
-    var platform = req.body.testcase.platform
-    var testtype = req.body.testcase.testtype   
+    var deskphone = req.body.testcase.deskphone
+    var sharpenq = req.body.testcase.sharpenq
+    var connectphone = req.body.testcase.connectphone
+    var chrome = req.body.testcase.chrome
+    var firefox = req.body.testcase.firefox
+    var ctisn = req.body.testcase.ctisn
+    var ctizd = req.body.testcase.ctizd
+    var ctisfdc = req.body.testcase.ctisfdc
+    var android = req.body.testcase.android
+    var ios = req.body.testcase.ios
+    var connect = req.body.testcase.connect
+    var quick = req.body.testcase.quick
+    var full = req.body.testcase.full
+    var regression = req.body.testcase.regression
+    var automated = req.body.testcase.automated
+    var inboundcall = req.body.testcase.inboundcall
+    var chat = req.body.testcase.chat
+    var email = req.body.testcase.email
+    var tweet = req.body.testcase.tweet
+    var tweetdm = req.body.testcase.tweetdm
+    var facebook = req.body.testcase.facebook
+    var sms = req.body.testcase.sms
+    var casein = req.body.testcase.casein
+    var voicemail = req.body.testcase.voicemail
+    var insights = req.body.testcase.insights        
 
     Testcase.update({
         area: area,
@@ -140,10 +204,32 @@ router.put("/update/:id", function(req, res) {
         details: details,
         expectation: expectation,
         notes: notes,
-        medium: medium,
-        priority: priority,
-        platform: platform,
-        testtype: testtype
+        deskphone: deskphone,
+        sharpenq: sharpenq,
+        connectphone: connectphone,
+        chrome: chrome,
+        firefox: firefox,
+        ctisn: ctisn,
+        ctizd: ctizd,
+        ctisfdc: ctisfdc,
+        android: android,
+        ios: ios,
+        connect: connect,
+        quick: quick,
+        full: full,
+        regression: regression,
+        automated: automated,
+        inboundcall: inboundcall,
+        chat: chat,
+        email: email,
+        tweet: tweet,
+        tweetdm: tweetdm,
+        facebook: facebook,
+        sms: sms,
+        casein: casein,
+        voicemail: voicemail,
+        insights: insights
+   
     },
     {where: {id: primaryKey}
 }).then(
