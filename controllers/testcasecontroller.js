@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require("../db");
 var Testcase = sequelize.import('../models/testcase');
-var User = sequelize.import('../models/user');
-
+var testresults = sequelize.import ('../models/testresults')
 
 /**********************
  * create an item for a user
@@ -85,7 +84,7 @@ router.post('/create',function(req,res){
                 result: testcase   
             })
         },
-        function crateError(err){
+        function createError(err){
             res.send(500,err.message)
         }
     );
@@ -255,6 +254,31 @@ router.delete('/delete/:id', function (req,res){
         },
         function deleteCaseError(err){
             res.send(500,err.message);
+        }
+    );
+});
+
+/**********************
+ * Save test results
+***********************/
+
+router.post('/save',function(req,res){
+    var owner = req.user.id 
+    var result = req.body.testcase.result
+    var resultNotes = req.body.testcase.resultNotes
+
+    testresults.create({
+        result: result,
+        resultNotes: resultNotes
+        
+    }).then(
+        function createSuccess(testresults){
+            res.json({
+                result: testresults   
+            })
+        },
+        function createError(err){
+            res.send(500,err.message)
         }
     );
 });

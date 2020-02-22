@@ -1,5 +1,5 @@
 module.exports = function(sequelize,DataTypes){
-    return sequelize.define('categoies',{
+    return sequelize.define('categories',{
         
         area:DataTypes.STRING,
         category:DataTypes.STRING,
